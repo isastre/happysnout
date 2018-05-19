@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>HappySnout - Iniciar Sesion</title>
+		<link rel="stylesheet" type="text/css" href="myStyle.css"/>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="main.js"></script>
+		   <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "http://localhost/happySnoutPhp/json.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                var id = field.id;
+                var title = field.title;
+                var duration = field.duration;
+                var price = field.price;
+                $("#listview").append("<a class='item' href='form.html?id=" + id + "&title=" + title + "&duration=" + duration + "&price=" + price + "'><span class='item-note'>$" + price + "</span><h2>" + title + " </h2><p>" + duration + "</p></a>");
+            });
+        });
+    });
+    </script>
+    </head>
+    <body>
+		<header>
+			<div class="menu_bar">
+				<a href="#" class="bt-menu"><span class="icon-list2"></span><pre>\\\    HappySnout</pre></a>
+			</div>
+		<nav>
+			<ul>
+				<li><a href="login.html"><span class="login"></span>Iniciar Sesion</a></li>
+				<li><a href="index.html"><span class="index"></span>Inicio</a></li>
+				<li><a href="foro.html"><span class="forum"></span>Foro</a></li>
+				<li class="submenu">
+					<a href="#"><span class="icon-rocket"></span>Ayuda<span class="caret icon-arrow-down6"></span></a>
+					<ul class="children">
+						<li><a href="acercaDe.html">Acerca de<span class="icon-dot"></span></a></li>
+						<li><a href="condiciones.html">Condiciones legales<span class="icon-dot"></span></a></li>
+						<li><a href="contacto.html">Contactanos<span class="icon-dot"></span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<h1 class="my-title">Iniciar sesion</h1>
+	<form class="formulario-login" action="http://localhost/happySnout/index.php" method="post">
+		
+		<label>Nombre de usuario:</label><br>
+		<input type="text" name="user" placeholder="introduce el nombre"><br>
+
+		<label>Contraseña:</label><br>
+		<input type="password" name="pass"><br>
+
+		<input class="my-button" type="submit" name="submit">
+	</form>
+	<div class="enlaces">
+		<a href="#">Olvido su contraseña</a><br>
+		<a href="registro.html">Registrate</a><br>
+	</div>
+	
+    </body>
+</html>

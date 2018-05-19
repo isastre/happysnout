@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>HappySnout - Registro</title>
+    <link rel="stylesheet" type="text/css" href="myStyle.css"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="main.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+        <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert").click(function() {
+            var name = $("#name").val();
+            var surname = $("#surname").val();
+            var mail = $("#mail").val();
+            var date = $("#date").val();
+            var username = $("#username").val();
+            var pass = $("#pass").val();
+            var dataString = "name=" + name + "&surname=" + surname + "&mail=" + mail +"&date=" + date + "&username=" + username + "&pass=" + pass + "&insert=";
+            /*
+            if ($.trim(name).length > 0 & $.trim(surname).length > 0 & $.trim(mail).length > 0 & $.trim(date).length > 0 & $.trim(username).length > 0 & $.trim(pass).length > 0) {
+                */
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/happySnoutPhp/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("inserted");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+            //}
+            return false;
+        });
+    });
+    </script>
+</head>
+
+<body>
+        <header>
+            <div class="menu_bar">
+                <a href="#" class="bt-menu"><span class="icon-list2"></span><pre>\\\    HappySnout</pre></a>
+            </div>
+        <nav>
+            <ul>
+                <li><a href="login.html"><span class="login"></span>Iniciar Sesion</a></li>
+                <li><a href="index.html"><span class="index"></span>Inicio</a></li>
+                <li><a href="foro.html"><span class="forum"></span>Foro</a></li>
+                <li class="submenu">
+                    <a href="#"><span class="icon-rocket"></span>Ayuda<span class="caret icon-arrow-down6"></span></a>
+                    <ul class="children">
+                        <li><a href="acercaDe.html">Acerca de<span class="icon-dot"></span></a></li>
+                        <li><a href="condiciones.html">Condiciones legales<span class="icon-dot"></span></a></li>
+                        <li><a href="contacto.html">Contactanos<span class="icon-dot"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <body>
+    <h1 class=my-title>Registrarse</h1>
+    <div class=formulario-registro>
+        
+        <label>Nombre de usuario:</label><br>
+        <input type="text" name="username" id="username" required><br>
+
+        <label>Contraseña:</label><br>
+        <input type="password" name="pass" id="pass" required><br>
+
+        <label>Correo Electronico:</label><br>
+        <input type="text" name="mail" id="mail" required><br>
+
+        <label>Nombre:</label><br>
+        <input type="text" name="name" id="name" required><br>
+
+        <label>Apellidos:</label><br>
+        <input type="text" name="surname" id="surname" required><br>
+
+        <label>Fecha de nacimiento:</label><br>
+        <input id="date" type="date" id="date" min="1900-01-01" required><br>
+
+        <input class="checkbox" type="checkbox" name="terminos" required>Acepto los <a href="condiciones.html">Terminos y condiciones de uso</a><br>
+        <input class="checkbox" type="checkbox" name="privacidad" required>Acepto la <a href="politica.html">Politica de privacidad</a><br>
+
+        <input id="insert" class="my-button" type="button" name="submit" value="Insert">
+    </div>
+    </body>
+
+</html>
